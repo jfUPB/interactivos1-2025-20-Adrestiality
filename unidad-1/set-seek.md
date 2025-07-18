@@ -9,3 +9,26 @@ es una experiencia relacionada con un usuario y un codigo, cuyo resultado depend
 
 #### ¿Cómo podrías aplicar lo que has visto en tu perfil profesional?
 para crear experiencias interactivas. un momento que te obliga a recordar. he de admitir que me llama la atencion crear un sistema fisico que sea manipulado por una masa de personas... imagínate un sistema físico que crea imagenes dependiendo de como aplaude las personas en un concierto... 
+
+### Actividad 02
+
+#### ¿Qué es el diseño/arte generativo?
+es un tipo de arte que emplea principalmente el uso de tecnologías con cierto grado de autonomía para la elaboración de una pieza, pero las propuestas y reglas siguen siendo de mano humana que abren puertas para una nueva forma de creación de productos y un nuevo género de arte
+
+#### ¿Cómo podrías aplicar lo que has visto en tu perfil profesional?
+El uso de las tecnologías es crucial para la elaboración de los sistemas físicos interactivos. siento que es como una corriente diferente a los que nos acostumbran a la carrera... no todo son juegos u animaciones, aqui se nos proporciona una tercera opcion con arte humano-maquina...
+
+### Actividad 03
+
+#### Inputs
+Los botones del microbit, el acelerómetro y el serial que conecta el pc y la tarjeta.
+
+### Outputs
+Las caritas que hace el microbit y lo de los circulos de colores con las letras.
+
+### Proceso
+El programa en Python se encarga de enviarle las señales de lo que se debe ver en cada caso de cada señal o gesto que hagamos y el P5.sj se encarga de recibir las señales del microbit.
+
+### Actividad 04
+
+
