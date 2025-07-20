@@ -60,5 +60,10 @@ function draw() {
 }
 ```
 #### Imágenes
-![]("C:\Users\sruiz\Pictures\Screenshots\Captura de pantalla 2025-07-20 095824.png")
+<img width="590" height="593" alt="Captura de pantalla 2025-07-20 095824" src="https://github.com/user-attachments/assets/aa5bc0ef-1cc4-4747-a70c-9908a7fcf04f" />
+
+<img width="608" height="601" alt="Captura de pantalla 2025-07-20 095831" src="https://github.com/user-attachments/assets/8c4616ef-6147-4186-b453-2afbe9a95b22" />
+
+<img width="599" height="600" alt="Captura de pantalla 2025-07-20 095846" src="https://github.com/user-attachments/assets/71c84048-0ca3-49fc-a361-22f46723b65f" />
+
 
