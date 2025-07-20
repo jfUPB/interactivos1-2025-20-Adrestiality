@@ -31,4 +31,34 @@ El programa en Python se encarga de enviarle las señales de lo que se debe ver 
 
 ### Actividad 04
 
+####[Enlace a P5js](https://editor.p5js.org/Adrestiality/sketches/0W3UMoq6-)
+
+#### Código
+```
+function setup() {
+  createCanvas(600, 600, WEBGL);
+}
+
+function draw() {
+  background(200);
+
+  orbitControl();
+  
+   ambientLight(50, 50, 50);
+
+  directionalLight(255, 100, 100, 10, 10, -1);
+ 
+  specularMaterial(206,183,219);
+  
+  stroke(51,9,17)
+
+  radius = mouseX
+  tubeRadius = radius/2
+  
+  torus(mouseX, tubeRadius,16,10);
+  
+}
+```
+#### Imágenes
+![]("C:\Users\sruiz\Pictures\Screenshots\Captura de pantalla 2025-07-20 095824.png")
 
