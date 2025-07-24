@@ -6,6 +6,7 @@
 ─── ･ ｡ﾟ☆: *.☽ .* :☆｡ﾟ.･ ｡ﾟ☆: *.☽ .* :☆｡ﾟ.･ ｡ﾟ☆: *.☽ .* :☆｡ﾟ.･ ｡ﾟ☆: *.☽ .* :☆｡ﾟ.･ ｡ﾟ☆: *.☽ .* :☆｡ﾟ.･ ｡ﾟ☆: *.☽ .* :☆｡ﾟ.･ ｡ﾟ☆: *.☽ .* :☆｡ﾟ.･ ｡ﾟ☆: *.☽ .* :☆｡ﾟ.･ ｡ﾟ☆: *.☽ .* :☆｡ﾟ.･ ｡ﾟ☆───
 
 ### **ACTIVIDAD 05 ༓☾∘∙•⋅⋅⊰⋅•⋅**
+//CÓDIGO MICROBIT//
 ```
 from microbit import *
 
@@ -20,6 +21,7 @@ while True:
 
     sleep(100)
 ```
+//CÓDIGO P5SJ//
 ```
   let port;
   let connectBtn;
@@ -70,15 +72,24 @@ while True:
     }
   }
 ```
-####¿Notaste que la aplicación no funcionó? 
+-    #### ¿Notaste que la aplicación no funcionó? 
+Realmente la aplicación si funciona, pero quizás no como esperábamos... Se debe a que una vez copiamos todos los codigos el boton que activa el cuadro rojo aparece por milisegundos, independientemente si dejabamos presionado el boton o no
 
-####¿Qué crees que podría estar mal?
+-    #### ¿Qué crees que podría estar mal?
+En cierto fragmento del código original del microbit teniamos "button_a.is_pressed()", lo cual detecta que el boton esta siendo presionado ahora mismo. El cambio realizado fue de "is" a "was", el cual detecta que el botón fue presionado desde la última vez que se llamó su función
 
-#### Explica cómo funciona el sistema físico interactivo que acabamos de crear
+-    #### Explica cómo funciona el sistema físico interactivo que acabamos de crear
+Recordemos que debemos manejar dos programas diferentes. 
+Una que programa a la microbit (micro:bit)y otro que se comunica con la microbit a modo de controlador(P5sj) 
+
+Por el lado de micro:bit tenemos un código que interpreta los botones que se presionan con letras en mayúsculas.
+
+Por el lado del P5sj tenemos otro código que crea botones para conectar la microbit (adicionalmente le incorporamos una libreria que le permite crear las opciones necesarias para vincularse con la microbit), interpreta su conección y dependiendo de dichas letras mayúsculas que le llegan, hace funciones diferentes... en este caso, se tiene un rectángulo hecho, y dependiendo de la letra presionada el rectangulo es rojo o verde.
 
 ### **ACTIVIDAD 06 ༓☾∘∙•⋅⋅⊰⋅•⋅**}
+-    [Enlace a P5js](https://editor.p5js.org/Adrestiality/sketches/fDEQm0OMm)
 
-https://editor.p5js.org/Adrestiality/sketches/fDEQm0OMm
+//CÓDIGO MICROBIT//
 ```
 from microbit import *
 
@@ -94,6 +105,7 @@ while True:
  
     sleep(100)
 ```
+//CÓDIGO P5SJ//
 ```
 let port;
 let connectBtn;
@@ -148,6 +160,3 @@ function connectBtnClick() {
   }
 }
 ```
-Escribe el enlace a tu programa en el editor de p5.js.
-Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).
-Copia el código del micro:bit en la bitácora (recuerda insertarlo usando markdown y el lenguaje python).
