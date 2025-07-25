@@ -34,7 +34,7 @@ El programa en Python se encarga de enviarle las señales de lo que se debe ver 
 -  #### [Enlace a P5js](https://editor.p5js.org/Adrestiality/sketches/0W3UMoq6-)
 
 -  #### Código
-```
+``` js
 function setup() {
   createCanvas(600, 600, WEBGL);
 }
