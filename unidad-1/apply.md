@@ -22,7 +22,7 @@ while True:
     sleep(100)
 ```
 //CÓDIGO P5SJ//
-```
+``` js
   let port;
   let connectBtn;
   let connectionInitialized = false;
@@ -90,7 +90,7 @@ Por el lado del P5sj tenemos otro código que crea botones para conectar la micr
 -    [Enlace a P5js](https://editor.p5js.org/Adrestiality/sketches/fDEQm0OMm)
 
 //CÓDIGO MICROBIT//
-```
+``` py
 from microbit import *
 
 uart.init(baudrate=115200)
@@ -106,7 +106,7 @@ while True:
     sleep(100)
 ```
 //CÓDIGO P5SJ//
-```
+``` js
 let port;
 let connectBtn;
 let connectionInitialized = false;
