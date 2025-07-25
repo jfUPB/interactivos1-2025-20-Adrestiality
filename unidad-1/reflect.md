@@ -49,6 +49,28 @@ No. considero que igue sigue siendo la misma respuesta. En esta carrera la inter
 -  #### El tutorial de la Actividad 05 te llevó paso a paso. ¿Cómo te sentiste con ese método de aprendizaje? ¿Te dio seguridad o preferirías haberlo intentado por tu cuenta desde el principio?
 La verdad me gustóbastante esta metodología. hacer todo paso a paso y sumado a la explicación del docente. creo que fue una actividad que me gustó realizar, no por el producto, sino por su metodología
 
+### ACTIVIDAD 07 ༓☾∘∙•⋅⋅⊰⋅•⋅**
 
+[BITÁCORA DE CAROLINA GARCÍA]
+En realidad, yo tome de inspiración el código de caro. Realmente logró todo de una manera más concisa y directa. Me gusta su orden y lo compacto que hace las cosas.
+El código hace que apareza un circulo y con ello un boton para conectar la microbit. luego, dependiendo del botón que se undió, los circulos se movian 20 posiciones a la izquierda o derecha
+
+### ACTIVIDAD 07 ༓☾∘∙•⋅⋅⊰⋅•⋅**
+
+-  #### Continuar: ¿Qué actividad, video o ejemplo de esta unidad te resultó más inspirador o te ayudó más a entender el potencial de los sistemas físicos interactivos?
+uff sin duda el código que que hacxe imágenes generativas dependiendo de ma música
+
+-  #### Dejar de hacer: ¿Hubo alguna parte que te pareció demasiado abstracta, muy rápida o confusa? ¿Hay algo que crees que podríamos cambiar para que sea más claro?
+No realmente. siento que la mayor dificultad es no entender python (y eso sumándolo a que se me dificulta la programación y su lógica). Lo que hace que no entienda que estoy programando específicamente. comprendo por segmentos, pero no se por que cierta función hace lo que hace, y por qué hace otras cosas si lo mezclamos con más funciones
+
+-  #### Empezar a hacer: ¿Qué te genera más curiosidad ahora? ¿Te gustaría explorar más sensores del micro:bit (luz, temperatura), crear visualizaciones más complejas en p5.js o ver más ejemplos de proyectos artísticos?
+He de admitir que tengo cierto interés y curiosidad en hacer más cosas con las microbit... le tengo cierto encanto a esas cositas
+
+-  #### Balance inspiración vs. técnica: ¿Cómo sentiste el equilibrio entre ver los videos inspiradores de la Actividad 01 y la parte técnica de conectar las herramientas en las actividades 03-06?
+Aunque si bien considero que los primeros videos nos da una excelente introducción del curso, tambien puede llegar a intiidarnos un poco. 
+Me gustaría tambien poder ver material de productos con la microbit por ejemplo, que es con lo que empezamos estas semanas
+
+-  #### Comentario adicional: ¿Hay algo más que quieras compartir sobre tu experiencia en esta unidad introductoria?
+Me gusta el acompañamiento docente de estos cursos. De resto, considero que no tengo más comentarios adicionales
 
   
