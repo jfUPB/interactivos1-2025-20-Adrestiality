@@ -127,3 +127,87 @@ Se encienden las luces con display.set_pixel cada vez que le corresponda
 Se controla gradualmente la intencidad de las luces con self.pixelState, haciendo que se vean intensas (encendidas del todo, es decir, equivalentes a 9) o sin intensidad (apagadas, siendo 0)
 
 Cuando le corresponda, el pixel 1 espera 1 segundo, el pixel 2 espera 2 segundos y el pixel 3 espera 3 segundos. De modo en que se van prendiendo de arriba hacia abajo, como si estuviera pasando de rojo a verde... O mejor dicho, como si fueses a empezar una carrerita de mario kart
+
+## **ACTIVIDAD 02 ༓☾∘∙•⋅⋅⊰⋅•⋅**
+```PY
+from microbit import *
+import utime
+
+STATE_INIT = 0
+STATE_HAPPY = 1
+STATE_SMILE = 2
+STATE_SAD = 3
+
+HAPPY_INTERVAL = 1500
+SMILE_INTERVAL = 1000
+SAD_INTERVAL = 2000
+
+current_state = STATE_INIT
+start_time = 0
+interval = 0
+
+while True:
+    # pseudoestado STATE_INIT
+    if current_state == STATE_INIT:
+        display.show(Image.HAPPY)
+        start_time = utime.ticks_ms()
+        interval = HAPPY_INTERVAL
+        current_state = STATE_HAPPY
+    elif current_state == STATE_HAPPY:
+        if button_a.was_pressed():
+            # Acciones para el evento
+            display.show(Image.SAD)
+            # Acciones de entrada para el siguiente estado
+            start_time = utime.ticks_ms()
+            interval = SAD_INTERVAL
+            current_state = STATE_SAD
+        if utime.ticks_diff(utime.ticks_ms(), start_time) > interval:
+            # Acciones para el evento
+            display.show(Image.SMILE)
+            # Acciones de entrada para el siguiente estado
+            start_time = utime.ticks_ms()
+            interval = SMILE_INTERVAL
+            current_state = STATE_SMILE
+    elif current_state == STATE_SMILE:
+        if button_a.was_pressed():
+            display.show(Image.HAPPY)
+            start_time = utime.ticks_ms()
+            interval = HAPPY_INTERVAL
+            current_state = STATE_HAPPY
+        if utime.ticks_diff(utime.ticks_ms(), start_time) > interval:
+            display.show(Image.SAD)
+            start_time = utime.ticks_ms()
+            interval = SAD_INTERVAL
+           current_state = STATE_SAD
+    elif current_state == STATE_SAD:
+        if button_a.was_pressed():
+            display.show(Image.SMILE)
+            start_time = utime.ticks_ms()
+            interval = SMILE_INTERVAL
+            current_state = STATE_SMILE
+        if utime.ticks_diff(utime.ticks_ms(), start_time) > interval:
+            display.show(Image.HAPPY)
+            start_time = utime.ticks_ms()
+            interval = HAPPY_INTERVAL
+            current_state = STATE_HAPPY
+```
+
+-  **Bitácora** 𖤓 ☆ ☼ ⋆⋅**
+https://app.diagrams.net/
+
+
+**[POR QUÉ EL PROGRAMA PERMITE REALIZAR DE MANERA CONCURRENTE VARIAS TAREAS]** 
+
+**[ESTADOS]**
+
+**[EVENTOS]**
+
+**[ACCIONES]** 
+
+**[DESCRIBE Y APLICA AL MENOS 3 VECTORES]** 
+
+> Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.
+
+Tomando en cuenta el códigocon las caritas, podemos identificar 3 vectores de prueba diferentes
+1. Si estamos en el estado SMILE, podemos pasar a HAPPY si se presiona el botón a
+2. 
