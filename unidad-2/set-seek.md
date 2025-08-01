@@ -119,8 +119,11 @@ Tiene el veneto Update que es el que ocurre en cada ciclo principal (while true)
 **[ACCIONES]** 
 
 Se guarda el tiempo en startTime una vez se inicialice el tiempo
-Se cambia el estado de Init a WaitTimeout una vez se inici el tiempo
+
+Se cambia el estado de Init a WaitTimeout una vez se inicia el tiempo
+
 Se encienden las luces con display.set_pixel cada vez que le corresponda
+
 Se controla gradualmente la intencidad de las luces con self.pixelState, haciendo que se vean intensas (encendidas del todo, es decir, equivalentes a 9) o sin intensidad (apagadas, siendo 0)
 
 Cuando le corresponda, el pixel 1 espera 1 segundo, el pixel 2 espera 2 segundos y el pixel 3 espera 3 segundos. De modo en que se van prendiendo de arriba hacia abajo, como si estuviera pasando de rojo a verde... O mejor dicho, como si fueses a empezar una carrerita de mario kart
