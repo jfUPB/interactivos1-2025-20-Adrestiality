@@ -128,7 +128,7 @@ Se controla gradualmente la intencidad de las luces con self.pixelState, haciend
 
 Cuando le corresponda, el pixel 1 espera 1 segundo, el pixel 2 espera 2 segundos y el pixel 3 espera 3 segundos. De modo en que se van prendiendo de arriba hacia abajo, como si estuviera pasando de rojo a verde... O mejor dicho, como si fueses a empezar una carrerita de mario kart
 
-## **ACTIVIDAD 02 ༓☾∘∙•⋅⋅⊰⋅•⋅**
+## **ACTIVIDAD 03 ༓☾∘∙•⋅⋅⊰⋅•⋅**
 ```PY
 from microbit import *
 import utime
@@ -193,21 +193,29 @@ while True:
 ```
 
 -  **Bitácora** 𖤓 ☆ ☼ ⋆⋅**
-https://app.diagrams.net/
-
+// https://app.diagrams.net/ //
 
 **[POR QUÉ EL PROGRAMA PERMITE REALIZAR DE MANERA CONCURRENTE VARIAS TAREAS]** 
+Por que una vez estemos en uno de los estados, antes de que pase el tiempo necesario para el cambio de acción o de carita, si presionamos una tecla, podemos por asi decirlo redirigir el flujo de estados. Es como una tarea secundaria que se realiza en un caso específico.
 
 **[ESTADOS]**
+Son las propias caritas que realizamos en el programa. INIT, HAPPY, SMILE y SAD. 
 
 **[EVENTOS]**
+button_a.was_pressed() y utime.ticks_diff(...) > interval, que hacen referencia a cuando el botón a de la microbit fue presionado y cuando ha pasado un tiempo determinado desde el ultimo cambio respectivamente.
 
 **[ACCIONES]** 
+De init comienza el conteo del tiempo y pasa a HAPPY.
+De HAPPY, si esperamos el tiempo necesario pasa a SMILE, pero si presionamos la tecla a, nos llevará a SAD.
+De SMILE, si esperamos el tiempo necesario pasa a SAD, pero si presionamos la tecla a, nos llevará a HAPPY.
+De SAD, si esperamos el tiempo necesario nos devuelve al inicio con HAPPY, pero si presionamos la tecla a, nos llevará a SMILE.
 
 **[DESCRIBE Y APLICA AL MENOS 3 VECTORES]** 
 
 > Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.
 
-Tomando en cuenta el códigocon las caritas, podemos identificar 3 vectores de prueba diferentes
+Tomando en cuenta el código con las caritas, podemos identificar 3 vectores de prueba diferentes
 1. Si estamos en el estado SMILE, podemos pasar a HAPPY si se presiona el botón a
-2. 
+2. Si estamos en el estado SAD, podemos pasar a SMILE si se presiona el botón a
+3. Si estamos en el estado HAPPY, podemos pasar a SAD si se presiona el botón a
+
