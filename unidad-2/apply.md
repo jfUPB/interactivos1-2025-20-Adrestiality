@@ -79,5 +79,3 @@ Aquí sucede la cuenta regresiva. El programa esta constantemente verificando po
 
 -    [STATE EXPLODED]
 Aquí la bomba ya explotó, por lo que solamente reestablece el tiempo y y espera a que el pin de la microbit se presione. Una vez se active te manda de vuelta a STATE CONF y vuelves a acceder a la onfiguración del tiempo
-
-
