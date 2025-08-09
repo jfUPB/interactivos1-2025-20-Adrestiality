@@ -5,7 +5,7 @@
 
 ### **ACTIVIDAD 06 ༓☾∘∙•⋅⋅⊰⋅•⋅**
 
-[PARTE 1: recuperación de conocimiento]
+**[PARTE 1: recuperación de conocimiento]**
 
 -  Describe con tus palabras qué es una máquina de estados. ¿Cuáles son sus cuatro componentes fundamentales que has utilizado en esta unidad? 
 
@@ -23,7 +23,7 @@ Pues primero añadiría el sub evento, (con las misma línea de código que el q
 
 Es un vector que tiene ciertos datos de entrada que tiene como proósito probar la funcionalidad del código. Nos sirve para, valga la redundancia; comprobar segmentos del código antes de ingresar las variables reales o dejarlo que ejecute con el caso real de valores
 
--  **[PARTE 2:  reflexión sobre tu proceso]**
+**[PARTE 2:  reflexión sobre tu proceso]**
 
 -  ¿Qué parte del diseño de la bomba temporizada te resultó más desafiante: crear el diagrama de estados (Actividad 04) o traducir ese diagrama a código MicroPython (Actividad 05)? ¿Por qué?
 
@@ -46,10 +46,10 @@ Hmmm la verdad no se me ocurre ahorita ninguno
 
 **BITÁCORA DE CAROLINA GARCÍA ORTEGA**
 
--  [REVISIÓN ACTIVIDAD 4]
+-  **[REVISIÓN ACTIVIDAD 4]**
 Me gusta bastante su diagrama. Es bastante conciso y facil de leer. No esta sobrecargado con líneas de código como el mío
 
--  [REVISIÓN ACTIVIDAD 5]
+-  **[REVISIÓN ACTIVIDAD 5]**
 Veo que ella no tenía un estado init como yo, sino que el código empezaba en el estado de configuración. Me gusta que ella pudiera poner un dibujito en el display. de resto lo veo bastante bien y correcto
 
 ### **ACTIVIDAD 08 ༓☾∘∙•⋅⋅⊰⋅•⋅**
@@ -74,3 +74,4 @@ Le pondría un 5. La verdad es que me divertí un poco programando. Cosa que es 
 -  [Comentario adicional] ¿Hay algo más que te gustaría compartir sobre tu proceso de aprendizaje en esta unidad? ¿Algún momento de frustración o de “¡Aha!” que quieras destacar?
 
 Probablemente mi momento "aha" fue cuando comprendi como integrar las acciones secundarias dentro de los estados y cuando entendí algunas cosas del tiempo, aunque aun debo reforzarlas un poco
+
