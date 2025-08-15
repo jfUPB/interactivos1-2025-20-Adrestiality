@@ -398,3 +398,5 @@ while True:
     buttonTask.update()
     bombTask.update()
 ```
+<img width="636" height="230" alt="image" src="https://github.com/user-attachments/assets/c630a9aa-7a1d-41a7-a84e-4ab4972b4028" />
+
