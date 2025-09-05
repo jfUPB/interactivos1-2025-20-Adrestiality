@@ -2,7 +2,7 @@
 
 ## Código
 
-(https://editor.p5js.org/generative-design/sketches/P_1_2_1_01)
+[Original](https://editor.p5js.org/generative-design/sketches/P_1_2_1_01)
 
 Código a modificar:
 
@@ -244,7 +244,8 @@ function keyPressed() {
 ```
 ## Video
 
-(https://youtu.be/YuKxB_clAd4)
+[Demo](https://youtu.be/YuKxB_clAd4)
+
 
 
 
