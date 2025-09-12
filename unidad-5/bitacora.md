@@ -15,7 +15,7 @@
 
 -  🧣**Muestra y explica la parte del código de p5.js donde lee los datos del micro:bit y los transforma en coordenadas de la pantalla.**
 
-```
+``` java script
 if (port.availableBytes() > 0) {
       let data = port.readUntil("\n");
       if (data) {
@@ -37,7 +37,7 @@ if (port.availableBytes() > 0) {
 
 -  ☎️ **¿Cómo se generan los eventos A pressed y B released que se generan en p5.js a partir de los datos que envía el micro:bit?**
 
-```
+``` java script
 function updateButtonStates(newAState, newBState) {
   // Generar eventos de keypressed
   if (newAState === true && prevmicroBitAState === false) {
@@ -61,7 +61,6 @@ Genuinamente estaba tratando de hacer esos arboltos pomposos de la película el 
 <img width="826" height="805" alt="no se" src="https://github.com/user-attachments/assets/d4dfbf25-23a3-401e-b2c5-72fd73f88e32" />
 
 ## 🎃**ACTIVIDAD 02**🎃
-🐯🦞🏀🧱✂️🍛🍑🏵️🍂🔥🔅🔸
 
 - 🦐 **¿Por qué se ve este resultado?**
 >
@@ -77,9 +76,33 @@ Genuinamente estaba tratando de hacer esos arboltos pomposos de la película el 
 >
 > definitivamente el tema de la lectura. En texto era muchisimo mas facil leer los datos con ASCII ya que nos daba las coordenadas de la posición de la microbit y si los botones estaban en true o false. En la version hexadecimal del ASCII si era muy engorroso de leer porque ni espacios habian.... pero en binario ni lo uno ni lo otro... el unico medianamente digerible es el hexadecimal
 
-- 🦋 **¿Cuántos bytes se están enviando por mensaje? ¿Cómo se relaciona esto con el formato '>2h2B'? ¿Qué significa cada uno de los bytes que se envían?**
+- 🔥 **¿Cuántos bytes se están enviando por mensaje? ¿Cómo se relaciona esto con el formato '>2h2B'? ¿Qué significa cada uno de los bytes que se envían?**
 >
 > <img width="1012" height="247" alt="image" src="https://github.com/user-attachments/assets/5cf25436-9346-4820-9b06-26678e05881b" />
 > <img width="1018" height="240" alt="image" src="https://github.com/user-attachments/assets/cc7950d8-b0cf-4385-90bf-9b1d293b763c" />
+> Parece que se estan enviando unos 6 bytes por mensaje y cada mensaje se envia por cada "shake" que le hacemos a la microbit. En otras palabras, aqui se evidencia que se cumple muy estrictamente el formato 2h2B. Supongo que el orden de los bytes debe ser los 4 primeros bytes deben de corresponder a las posiciones en X y Y, mientras que los otros 2 bytws deben ser el verdadero o falso de los botones A y b
 
+- 🏀 **¿Cómo se verían esos números en el formato '>2h2B'?**
+>
+> <img width="1008" height="247" alt="image" src="https://github.com/user-attachments/assets/1de0a343-8e91-4d7f-91c4-a1382f14ecf3" />
+>
+> ``` python
+> xValue =  20
+> yValue =  30
+> ```
+> 
+> ``` python
+> xValue = - 20
+> yValue = - 30
+> ```
+>
+> Al parecer, en formato binario y en modo texto, los numeros positivos se ven separaditos de a dos en dos. Los negativos se ven pegaditos de a cuatro. Para lograrlo decidi cambiar el codigo de la microbit, primero en donde iban los valores de X y Y, los cambie por valores positivos y luego negativos para compararlos más facil
 
+- 🏵️ **¿Qué diferencias ves entre los datos en ASCII y en binario? ¿Qué ventajas y desventajas ves en usar un formato binario en lugar de texto en ASCII? ¿Qué ventajas y desventajas ves en usar un formato ASCII en lugar de binario?**
+> <img width="1028" height="264" alt="image" src="https://github.com/user-attachments/assets/22df635e-5289-462a-8998-00a174f21ead" />
+>
+> La diferencia principal radica en la cantidad de bytes, la facilidad de lectura y lo universal que es el modo de pasar los datos, ya que me parece haber leido en algun lado mientras consultaba cosas sobre los datos binarios leer que pasardatos en este formato no es tan universal, al menos no tanto como el ASCII.
+> 
+> Las ventajas del binario sobre el ASCII es la cantidad de bytes, pues aquí se mandan más limpios y comptactos, pero su mayor desventaja es que no todos los caracteres se traducen al texto, pues la gran mayoria de paginas esperan un lenguaje ASCII para traducir
+> 
+> Las ventajas del ASCII sobre el binario sin duda es su universalidad y su facilidad para leer y comprender. Existen muchos traductores de ASCII lo cual optimiza su comprension a la hora de leerlo, pero su mayor desventaja es el peso de los bytes. Son más caracteres, son mas numeros y letras, es más texto menos compacto si no lo traduces, por lo que una persona promedio que aun no identifique algunas cosas de ASCII dependerá siempre de un traductor
