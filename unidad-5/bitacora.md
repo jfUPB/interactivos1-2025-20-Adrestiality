@@ -106,3 +106,14 @@ Genuinamente estaba tratando de hacer esos arboltos pomposos de la película el 
 > Las ventajas del binario sobre el ASCII es la cantidad de bytes, pues aquí se mandan más limpios y comptactos, pero su mayor desventaja es que no todos los caracteres se traducen al texto, pues la gran mayoria de paginas esperan un lenguaje ASCII para traducir
 > 
 > Las ventajas del ASCII sobre el binario sin duda es su universalidad y su facilidad para leer y comprender. Existen muchos traductores de ASCII lo cual optimiza su comprension a la hora de leerlo, pero su mayor desventaja es el peso de los bytes. Son más caracteres, son mas numeros y letras, es más texto menos compacto si no lo traduces, por lo que una persona promedio que aun no identifique algunas cosas de ASCII dependerá siempre de un traductor
+
+## 🐳**ACTIVIDAD 03**🐳 
+🐬🐋🐟🐠🧶🪢🧵🎭🩲👗👖💎🧿🩹🛡️📪🧊⛴️
+
+- 🥏**Explica por qué en la unidad anterior teníamos que enviar la información delimitada y además marcada con un salto de línea y ahora no es necesario.**
+>
+>0000
+
+- 👘**Compara el código de la unidad anterior relacionado con la recepción de los datos seriales que ves ahora. ¿Qué cambios observas?**
+>
+>00
