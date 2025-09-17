@@ -968,4 +968,15 @@ function keyPressed() {
 ><img width="735" height="791" alt="image" src="https://github.com/user-attachments/assets/77e71913-f969-43d0-a1e5-fc7ad9ee6ae1" />
 ><img width="733" height="792" alt="Captura de pantalla 2025-09-17 173902" src="https://github.com/user-attachments/assets/9057b823-2b42-4192-b8a7-d34a85b22ddc" />
 
- 
+## 🐨**ACTIVIDAD 04**🐨
+
+- **Mi nota propuesta: 4.4**
+- 🦝 **Mapeo de evidencias según la rúbrica**
+
+| Criterio                       | Autoevaluación | Justificación / Evidencias |
+|--------------------------------|----------------|-----------------------------|
+| **Profundidad de la Indagación** | Logrado    | La verdad considero que no fui más allá de las preguntas y planteamientos que habian en la bitácora. No necesariamente consultaba o indagaba demás, sino que trataba de deducir por mi cuenta. Siento que pude haber demostrado un poco más de interés. Aunque admito que todo lo que hice fue por mi cuenta, no usé IA ni herramientas que buscaran resolver todo|
+| **Calidad de la Experimentación** | Excelente     | La verdad es que el tema del framing no tenía mucha ciencia. Simplemente es un sistema que te permite mantener un orden a la hora de leer los datos en binario |
+| **Calidad del análisis y la reflexión** | Logrado |Considero que la gran mayoría de la implementación del codigo pude hacerlo yo, anque con fallas y lineas nada que ver, pero pude hacer gran parte. El resto fue guía y corrección del docente|
+| Apropiación y articulación de conceptos** | Logrado  | Igualmente como lo decía en el primer criterio, no fui mas alla de lo que se explicaba y lo que se pedia, por lo que no considero que tenga una "maestria conceptual" simplemente se lo basico y lo entiendo. Pero no es perfecto |
+
