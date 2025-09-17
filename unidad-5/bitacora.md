@@ -148,7 +148,7 @@ function updateButtonStates(newAState, newBState) {
 - 🪢 ** ¿Qué cambios tienen los programas y ¿Qué puedes observar en la consola del editor de p5.js?**
 > El cambio principal esta en lo que dije anteriormente, la amnera en que los datos se reciben y una que otra funcion que no esta por ahi
 
-## 🎩**ACTIVIDAD 04**🎩   👾😈🐦‍⬛🐜🕷️👥🗣️👣🎇🎓🎱🔮♠️♟️
+## 🎩**ACTIVIDAD 04**🎩   
 
 - 🐈‍⬛**INTENTO 1**
 ``` java script
@@ -374,4 +374,323 @@ function keyPressed() {
 ```
 > - EXPECTATIVA: La verdad hice esto simplemente eliminando las lineas que identifique que ya no estaban cuando cambiamos la lectura de datos de ASCII a binario. Llevo horas acumuladas de sueño y veo algo borroso. No creo que funcione cuando llegue a clase a probarlo, pero tampoco espero que sea muy dificil. ¿Quizas puse algunas nuevas lineas donde no era?
 >
-> - REALIDAD: no se lol
+> - REALIDAD: En efecto, hay un error, pero aun no se por qué. Tampoco dice que la microbit esta conectada, ni imprime los colores
+>
+> - RETROALIMENTACIÓN: Se me fue indicado que el código carece de implementar funciones para que los datos llegaran y ase actualizaran. 
+
+<img width="416" height="37" alt="image" src="https://github.com/user-attachments/assets/85450d55-ea3c-4e86-b0be-f6882b5bc564" />
+
+- 🎇**INTENTO 2**
+````javas cript
+// P_1_2_1_01
+//
+// Generative Gestaltung – Creative Coding im Web
+// ISBN: 978-3-87439-902-9, First Edition, Hermann Schmidt, Mainz, 2018
+// Benedikt Groß, Hartmut Bohnacker, Julia Laub, Claudius Lazzeroni
+// with contributions by Joey Lee and Niels Poldervaart
+// Copyright 2018
+//
+// http://www.generative-gestaltung.de
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/**
+ * shows how to interpolate colors in different styles/ color modes
+ *
+ * MOUSE
+ * left click          : new random color set
+ * position x          : interpolation resolution
+ * position y          : row count
+ *
+ * KEYS
+ * 1-2                 : switch interpolation style
+ * s                   : save png
+ * c                   : save color palette
+ */
+
+let serialBuffer = [];
+
+"use strict";
+
+var tileCountX = 2;
+var tileCountY = 10;
+var colorsLeft = [];
+var colorsRight = [];
+var colors = [];
+
+var interpolateShortest = true;
+
+let c;
+let lineModuleSize = 0;
+let angle = 0;
+let angleSpeed = 1;
+const lineModule = [];
+let lineModuleIndex = 0;
+let clickPosX = 0;
+let clickPosY = 0;
+
+let port;
+let connectBtn;
+let microBitConnected = false;
+
+const STATES = {
+  WAIT_MICROBIT_CONNECTION: "WAITMICROBIT_CONNECTION",
+  RUNNING: "RUNNING",
+};
+
+let appState = STATES.WAIT_MICROBIT_CONNECTION;
+let microBitX = 0;
+let microBitY = 0;
+let microBitAState = false;
+let microBitBState = false;
+let prevmicroBitAState = false;
+let prevmicroBitBState = false;
+
+function setup() {
+  createCanvas(800, 800);
+  colorMode(HSB);
+  noStroke();
+  shakeColors();
+
+  port = createSerial();
+  connectBtn = createButton("Connect to micro:bit");
+  connectBtn.position(0, 0);
+  connectBtn.mousePressed(connectBtnClick);
+}
+
+function connectBtnClick() {
+  if (!port.opened()) {
+    port.open("MicroPython", 115200);
+  } else {
+    port.close();
+  }
+}
+
+function updateButtonStates(newAState, newBState) {
+  // Generar eventos de keypressed
+  if (newAState === true && prevmicroBitAState === false) {
+    interpolateShortest = true;
+    print("A pressed");
+  }
+  // Generar eventos de key released
+  if (newBState === false && prevmicroBitBState === true) {
+    interpolateShortest = false;
+    print("B pressed");
+  }
+
+  prevmicroBitAState = newAState;
+  prevmicroBitBState = newBState;
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+function readSerialData() {
+  // Acumula los bytes recibidos en el buffer
+  let available = port.availableBytes();
+  if (available > 0) {
+    let newData = port.readBytes(available);
+    serialBuffer = serialBuffer.concat(newData);
+  }
+
+  // Procesa el buffer mientras tenga al menos 8 bytes (tamaño de un paquete)
+  while (serialBuffer.length >= 8) {
+    // Busca el header (0xAA)
+    if (serialBuffer[0] !== 0xaa) {
+      serialBuffer.shift(); // Descarta bytes hasta encontrar el header
+      continue;
+    }
+
+    // Si hay menos de 8 bytes, espera a que llegue el paquete completo
+    if (serialBuffer.length < 8) break;
+
+    // Extrae los 8 bytes del paquete
+    let packet = serialBuffer.slice(0, 8);
+    serialBuffer.splice(0, 8); // Elimina el paquete procesado del buffer
+
+    // Separa datos y checksum
+    let dataBytes = packet.slice(1, 7);
+    let receivedChecksum = packet[7];
+    // Calcula el checksum sumando los datos y aplicando módulo 256
+    let computedChecksum = dataBytes.reduce((acc, val) => acc + val, 0) % 256;
+
+    if (computedChecksum !== receivedChecksum) {
+      console.log("Checksum error in packet");
+      continue; // Descarta el paquete si el checksum no es válido
+    }
+
+    // Si el paquete es válido, extrae los valores
+    let buffer = new Uint8Array(dataBytes).buffer;
+    let view = new DataView(buffer);
+    microBitX = view.getInt16(0);
+    microBitY = view.getInt16(2);
+    microBitAState = view.getUint8(4) === 1;
+    microBitBState = view.getUint8(5) === 1;
+    updateButtonStates(microBitAState, microBitBState);
+
+    console.log(
+      `microBitX: ${microBitX} microBitY: ${microBitY} microBitAState: ${microBitAState} microBitBState: ${microBitBState}`
+    );
+  }
+}
+
+function draw() {
+  if (!port.opened()) {
+    connectBtn.html("Connect to micro:bit");
+    microBitConnected = false;
+  } else {
+    microBitConnected = true;
+    connectBtn.html("Disconnect");
+  }
+
+   switch (appState) {
+    case STATES.WAIT_MICROBIT_CONNECTION:
+      // No puede comenzar a dibujar hasta que no se conecte el microbit
+      // evento 1:
+      if (microBitConnected === true) {
+        // Preparo todo para el estado en el próximo frame
+        print("Microbit ready to draw");
+        
+        noCursor();
+        port.clear();
+        prevmicroBitAState = false;
+        prevmicroBitBState = false;
+        appState = STATES.RUNNING;
+      }
+       
+     break;
+     
+         case STATES.RUNNING:
+      // EVENTO: estado de conexión del microbit
+      if (microBitConnected === false) {
+        print("Waiting microbit connection");
+        cursor();
+        appState = STATES.WAIT_MICROBIT_CONNECTION;
+        break;
+      }
+
+      //EVENTO: recepción de datos seriales del micro:bit
+
+      readSerialData();
+
+      if (microBitAState === true) {
+        let x = microBitX;
+        let y = microBitY;
+
+        if (keyIsPressed && keyCode === SHIFT) {
+          if (abs(clickPosX - x) > abs(clickPosY - y)) {
+            y = clickPosY;
+          } else {
+            x = clickPosX;
+          }
+        }
+
+        push();
+        translate(x, y);
+        rotate(radians(angle));
+        if (lineModuleIndex != 0) {
+          tint(c);
+          image(
+            lineModule[lineModuleIndex],
+            0,
+            0,
+            lineModuleSize,
+            lineModuleSize
+          );
+        } else {
+          stroke(c);
+          line(0, 0, lineModuleSize, lineModuleSize);
+        }
+        angle += angleSpeed;
+        pop();
+      }
+
+      break;
+  }
+  
+  tileCountX = int(map(microBitX / 10, 0, width, 2, 100));
+  tileCountY = int(map(microBitY / 10, 0, height, 2, 10));
+  var tileWidth = width / tileCountX;
+  var tileHeight = height / tileCountY;
+  var interCol;
+  colors = [];
+
+  for (var gridY = 0; gridY < tileCountY; gridY++) {
+    var col1 = colorsLeft[gridY];
+    var col2 = colorsRight[gridY];
+
+    for (var gridX = 0; gridX < tileCountX; gridX++) {
+      var amount = map(gridX, 0, tileCountX - 1, 0, 1);
+
+      if (interpolateShortest) {
+        // switch to rgb
+        colorMode(RGB);
+        interCol = lerpColor(col1, col2, amount);
+        // switch back
+        colorMode(HSB);
+      } else {
+        interCol = lerpColor(col1, col2, amount);
+      }
+
+      fill(interCol);
+
+      var posX = tileWidth * gridX;
+      var posY = tileHeight * gridY;
+      rect(posX, posY, tileWidth, tileHeight);
+
+      // save color for potential ase export
+      colors.push(interCol);
+    }
+  }
+}
+
+function shakeColors() {
+  for (var i = 0; i < tileCountY; i++) {
+    colorsLeft[i] = color(random(0, 60), random(0, 100), 100);
+    colorsRight[i] = color(random(160, 190), 100, random(0, 100));
+  }
+}
+
+function keyPressed() {
+  if (key == "a")
+    shakeColors();
+  if (key == "c" || key == "C")
+    writeFile([gd.ase.encode(colors)], gd.timestamp(), "ase");
+  if (key == "s" || key == "S") saveCanvas();
+}
+````
+> - EXPECTATIVA: Implemente las cosas que me indico el profesor. También añadí una línea que me hacía falta, que era let serialBuffer = []; espero si quiera poder verificar que estan llegando los datos
+>
+> - REALIDAD: Hmmm al parece al menos ya muestra que esta conectado, pero no muestra si los botones estan conectados
+<img width="245" height="70" alt="image" src="https://github.com/user-attachments/assets/83a11c41-c018-4be7-b702-0102ca39c9f1" />
+
+- 🎱 **INTENTO 3**
+
+> GENUINAMENTE, no se que paso. simplemente volvi enviar el codigo de la microbit y volvi a ejecutar. Pero ahora si funciona casi del todo. Consigue recibir los datos de las posiciones, pero no pasa nada aun con los botones de la microbit
+>
+> <img width="795" height="124" alt="image" src="https://github.com/user-attachments/assets/57968ed4-9b80-444c-9185-ac958eb32ad0" />
+> <img width="739" height="817" alt="image" src="https://github.com/user-attachments/assets/443f9819-cd86-4b77-a6ca-91d3fa41bf08" />
+
+- 🗣️ **INTENTO 4**
+👾😈🐦‍⬛🐜🕷️👥👣🔮♠️♟️
+>
+> Nuevamente aqui, no hice algun cambio en el codigo. Solamente decidi experimentar algo
+>
+> El unico boton ue funciona es el B, y este solo se ve su efecto cuando la cuadricula esta algo grande o quizas cuando le da la gana, no lo se, pero al menos esa funaciona
+>
+> En otras palabras el botón A del microbit no funciona
+>
+><img width="732" height="791" alt="image" src="https://github.com/user-attachments/assets/a52087ac-c0f2-4b1e-9513-da18d58c8d33" />
+><img width="731" height="798" alt="image" src="https://github.com/user-attachments/assets/0f50add7-bb31-41b6-b9fc-0c4adf0f08b2" />
+><img width="914" height="140" alt="image" src="https://github.com/user-attachments/assets/a652b3bf-5569-44ce-9e17-58c2378963cb" />
+
+- 🎓 **INTENTO 5**
+
