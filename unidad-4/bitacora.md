@@ -246,7 +246,3 @@ function keyPressed() {
 
 [Demo](https://youtu.be/YuKxB_clAd4)
 
-
-
-
-
