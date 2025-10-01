@@ -134,4 +134,22 @@ npm notice
 
 ## **ACTIVIDAD 04**
 
--
+- **Abre page2.html en tu navegador (con el servidor corriendo). Abre la consola de desarrollador (F12). Detén el servidor Node.js (Ctrl+C). Refresca la página page2.html. Observa la consola del navegador. ¿Ves algún error relacionado con la conexión? ¿Qué indica? Vuelve a iniciar el servidor y refresca la página. ¿Desaparecen los errores?**
+>
+> Caundo dsactivamos el servidor desde el node.jsla consola de la pagina te saca un error diciendo que hay un error de coneccion. Una vez reestablecemos el ervidor, la pagina se refrezca y sigue comun y corriente
+
+- **Comenta la línea socket.emit(‘win2update’, currentPageData, socket.id); dentro del listener connect. Reinicia el servidor y refresca page1.html y page2.html. Mueve la ventana de page2 un poco para que envíe una actualización. ¿Qué pasó? ¿Por qué?**
+>
+> Al pareceer lo que hicimos fue hacer que la pagina 1 ya no recibiera actualizaciones de la ubicacion de la pagina 2. Por ende la pagina 2 era la unica a la que se le movia la secuencia de imagenes, ya que el si estaba recibiendo actualizaciones del 1. Esto mismo tambien se ve evidenciado en el git, ya que solo aprecen las coordenadas de solo una de las paginas
+
+- **Asegúrate de tener este console.log en page2.js. Abre ambas páginas. Mueve la ventana de page1. Observa la consola del navegador de page2. ¿Qué datos muestra? Mueve la ventana de page2. Observa la consola de page1. ¿Qué pasa? ¿Por qué?**
+>
+> Las consolas del naegador deben de estra mostrando las coordenadas que estan analizando de la ventana contraria, a la que deben seguir 
+
+- **Observa checkWindowPosition() en page2.js y modifica el código del if para comprobar si el código dentreo de este se ejecuta.Mueve cada ventana y observa las consolas. ¿Qué puedes concluir y por qué?**
+>
+> para este experimento decidi comentar todo el if a ver que pasaba. lo primero quennote es que ahora el circulo de la pagina 2, la que modificamos, se encontraba completamente pegad al limite, por lo que no se le veia bien si estaba al menos haciendo el ejercicio de apuntar al opuesto. el efecto en la page 1 fue que ya no podia calcular completamente bien la posicion de su opuesto
+
+- **Cambia el background(220) para que dependa de la distancia entre las ventanas. Puedes calcular la magnitud del resultingVector usando let distancia = resultingVector.mag(); y luego usa map() para convertir esa distancia a un valor de gris o color. background(map(distancia, 0, 1000, 255, 0)); (ajusta el rango 0-1000 según sea necesario).**
+>
+>
