@@ -152,5 +152,216 @@ npm notice
 
 - **Cambia el background(220) para que dependa de la distancia entre las ventanas. Puedes calcular la magnitud del resultingVector usando let distancia = resultingVector.mag(); y luego usa map() para convertir esa distancia a un valor de gris o color. background(map(distancia, 0, 1000, 255, 0)); (ajusta el rango 0-1000 según sea necesario).**
 >
->
+> 000
+
+## **ACTIVIDAD 05**
+
+SERVER.JS
+````
+// server.js
+const express = require('express');
+const http = require('http');
+const socketIO = require('socket.io');
+const path = require('path');
+
+const app = express();
+const server = http.createServer(app);
+const io = socketIO(server);
+const port = process.env.PORT || 3000;
+
+let page1 = { x: 0, y: 0, width: 200, height: 200, color: '#ff4444', pulse: 0 };
+let page2 = { x: 0, y: 0, width: 200, height: 200, color: '#44ff44', pulse: 0 };
+
+app.use(express.static(path.join(__dirname, 'views')));
+app.get('/page1', (req, res) => res.sendFile(path.join(__dirname, 'views', 'page1.html')));
+app.get('/page2', (req, res) => res.sendFile(path.join(__dirname, 'views', 'page2.html')));
+
+function isValidWindowData(data) {
+  return data &&
+         typeof data.x === 'number' &&
+         typeof data.y === 'number' &&
+         typeof data.width === 'number' &&
+         typeof data.height === 'number';
+}
+function getRandomColor() {
+  return '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
+}
+
+io.on('connection', (socket) => {
+  console.log('Conectado:', socket.id);
+
+  socket.on('disconnect', () => {
+    console.log('Desconectado:', socket.id);
+    socket.broadcast.emit('peerDisconnected');
+  });
+
+  socket.on('win1update', (data) => {
+    if (isValidWindowData(data)) {
+      data.color = getRandomColor();
+      data.pulse = Date.now();
+      page1 = data;
+      io.emit('getdata', { page: 'page1', data: page1 });
+    }
+  });
+
+  socket.on('win2update', (data) => {
+    if (isValidWindowData(data)) {
+      data.color = getRandomColor();
+      data.pulse = Date.now();
+      page2 = data;
+      io.emit('getdata', { page: 'page2', data: page2 });
+    }
+  });
+});
+
+server.listen(port, () => {
+  console.log(`Servidor en http://localhost:${port}`);
+});
+````
+
+PAGE1.JS
+````
+// page1.js
+let myData = { x: window.screenX, y: window.screenY, width: window.innerWidth, height: window.innerHeight, color: '#ff4444', pulse: Date.now() };
+let otherData = { x: 0, y: 0, width: 200, height: 200, color: '#44ff44', pulse: 0 };
+
+let socket;
+let pulses = [];
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  socket = io();
+
+  socket.on('connect', () => {
+    socket.emit('win1update', myData);
+  });
+
+  socket.on('getdata', (res) => {
+    if (res.page === 'page2') {
+      otherData = res.data;
+      pulses.push({ x: otherData.x+otherData.width/2, y: otherData.y+otherData.height/2, start: millis(), color: otherData.color });
+    }
+  });
+}
+
+function draw() {
+  background(30);
+
+  // bolita propia
+  fill(myData.color);
+  ellipse(myData.x + myData.width/2, myData.y + myData.height/2, 100, 100);
+
+  // bolita de la otra ventana
+  fill(otherData.color);
+  ellipse(otherData.x + otherData.width/2, otherData.y + otherData.height/2, 100, 100);
+
+  // línea entre ambas
+  stroke(255);
+  line(myData.x + myData.width/2, myData.y + myData.height/2,
+       otherData.x + otherData.width/2, otherData.y + otherData.height/2);
+
+  drawPulses();
+  checkWindowChange();
+}
+
+function checkWindowChange() {
+  let newData = { x: window.screenX, y: window.screenY, width: window.innerWidth, height: window.innerHeight };
+  if (newData.x !== myData.x || newData.y !== myData.y || newData.width !== myData.width || newData.height !== myData.height) {
+    myData = { ...newData, color: getRandomColor(), pulse: Date.now() };
+    socket.emit('win1update', myData);
+    pulses.push({ x: myData.x+myData.width/2, y: myData.y+myData.height/2, start: millis(), color: myData.color });
+  }
+}
+
+function drawPulses() {
+  for (let i = pulses.length-1; i>=0; i--) {
+    let p = pulses[i];
+    let age = millis()-p.start;
+    if (age > 1000) { pulses.splice(i,1); continue; }
+    let r = map(age,0,1000,0,200);
+    let alpha = map(age,0,1000,150,0);
+    push();
+    let c = color(p.color);
+    stroke(red(c), green(c), blue(c), alpha);
+    noFill();
+    ellipse(p.x, p.y, r, r);
+    pop();
+  }
+}
+
+function windowResized(){ resizeCanvas(windowWidth, windowHeight); }
+function getRandomColor(){ return '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0'); }
+````
+
+PAGE2.JS
+````
+// page2.js
+let myData = { x: window.screenX, y: window.screenY, width: window.innerWidth, height: window.innerHeight, color: '#44ff44', pulse: Date.now() };
+let otherData = { x: 0, y: 0, width: 200, height: 200, color: '#ff4444', pulse: 0 };
+
+let socket;
+let pulses = [];
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  socket = io();
+
+  socket.on('connect', () => {
+    socket.emit('win2update', myData);
+  });
+
+  socket.on('getdata', (res) => {
+    if (res.page === 'page1') {
+      otherData = res.data;
+      pulses.push({ x: otherData.x+otherData.width/2, y: otherData.y+otherData.height/2, start: millis(), color: otherData.color });
+    }
+  });
+}
+
+function draw() {
+  background(30);
+
+  fill(myData.color);
+  ellipse(myData.x + myData.width/2, myData.y + myData.height/2, 100, 100);
+
+  fill(otherData.color);
+  ellipse(otherData.x + otherData.width/2, otherData.y + otherData.height/2, 100, 100);
+
+  stroke(255);
+  line(myData.x + myData.width/2, myData.y + myData.height/2,
+       otherData.x + otherData.width/2, otherData.y + otherData.height/2);
+
+  drawPulses();
+  checkWindowChange();
+}
+
+function checkWindowChange() {
+  let newData = { x: window.screenX, y: window.screenY, width: window.innerWidth, height: window.innerHeight };
+  if (newData.x !== myData.x || newData.y !== myData.y || newData.width !== myData.width || newData.height !== myData.height) {
+    myData = { ...newData, color: getRandomColor(), pulse: Date.now() };
+    socket.emit('win2update', myData);
+    pulses.push({ x: myData.x+myData.width/2, y: myData.y+myData.height/2, start: millis(), color: myData.color });
+  }
+}
+
+function drawPulses() {
+  for (let i = pulses.length-1; i>=0; i--) {
+    let p = pulses[i];
+    let age = millis()-p.start;
+    if (age > 1000) { pulses.splice(i,1); continue; }
+    let r = map(age,0,1000,0,200);
+    let alpha = map(age,0,1000,150,0);
+    push();
+    let c = color(p.color);
+    stroke(red(c), green(c), blue(c), alpha);
+    noFill();
+    ellipse(p.x, p.y, r, r);
+    pop();
+  }
+}
+
+function windowResized(){ resizeCanvas(windowWidth, windowHeight); }
+function getRandomColor(){ return '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0'); }
+````
+
 
