@@ -111,3 +111,27 @@ npm notice
 - Resume con tus propias palabras la diferencia fundamental entre una comunicación HTTP tradicional y una comunicación usando WebSockets/Socket.IO. ¿En qué tipo de aplicaciones has visto o podrías imaginar que se usa esta comunicación en tiempo real?
 >
 > La comunicacion http consta principalemnte de que tu, como usuario, esperes una respuesta a tu peticion, que, aunque no esta mal, se úede mejorar gracias a WebSockets que te proporciona una libreria llena de opciones que reducen y casi que eliminan ese tiempo de espera. Todo es inmediato, volviendolo mucho mas eficaz
+
+## **ACTIVIDAD 03** 
+
+- **Detén el servidor si está corriendo. Cambia la primera ruta de /page1 a /pagina_uno. Inicia el servidor. Intenta acceder a http://localhost:3000/page1. ¿Funciona? Ahora intenta acceder a http://localhost:3000/pagina_uno. ¿Funciona? ¿Qué te dice esto sobre cómo el servidor asocia URLs con respuestas? Restaura el código.**
+>
+> No funciona si lo cambiamos a "pagina_uno2 ya que dentro del codigo tenemos definido que se llama page 1. Independientemente si cambiamo a pagina_uno antes o despues de bajar el servidor, no va a funcionar
+
+-**Asegúrate de que el servidor esté corriendo (npm start). Abre http://localhost:3000/page1 en una pestaña. Observa la terminal del servidor. ¿Qué mensaje ves? Anota el ID. Abre http://localhost:3000/page2 en OTRA pestaña. Observa la terminal. ¿Qué mensaje ves? ¿El ID es diferente? Cierra la pestaña de page1. Observa la terminal. ¿Qué mensaje ves? ¿Coincide el ID con el que anotaste? Cierra la pestaña de page2. Observa la terminal.**
+>
+> Cada ventana tiene su propio ID, pero, independientemente si se abre o se cierran las pestañas seguiran con el mismo numero y letras
+
+- **Inicia el servidor y abre page1 y page2. Mueve la ventana de page1. Observa la terminal del servidor. ¿Qué evento se registra (win1update o win2update)? ¿Qué datos (Data:) ves? Mueve la ventana de page2. Observa la terminal. ¿Qué evento se registra ahora? ¿Qué datos ves? Experimento clave: cambia socket.broadcast.emit(‘getdata’, page1); por socket.emit(‘getdata’, page1); (quitando broadcast). Reinicia el servidor, abre ambas páginas. Mueve page1. ¿Se actualiza la visualización en page2? ¿Por qué sí o por qué no? (Pista: ¿A quién le envía el mensaje socket.emit?). Restaura el código a broadcast.emit**
+>
+> Cuando realizamos movimientos entre las ventanas, los que aparece en el git es la actualizacion de su ubicacion en x y y, ademas de los valores de alto y ancho de la ventana, lo cual permite que en la actividad interactiva siempre parezcan conectados los puntos
+>
+> Cuando cambiamos esas lineas de codigo pasa algo raro pero no se como explicarlo. por decirlo de alguna manera las coordenadas de la pagina1 ya no se actualizan correctamente y puese hacer que la pagina 2 se confunda y cree una bolita en su propia ventana cuando realmente deberia estra dando la ilusion de que esta conectada a las otra
+
+- **Detén el servidor. Cambia const port = 3000; a const port = 3001;. Inicia el servidor. ¿Qué mensaje ves en la consola? ¿En qué puerto dice que está escuchando? Intenta abrir http://localhost:3000/page1. ¿Funciona? Intenta abrir http://localhost:3001/page1. ¿Funciona? ¿Qué aprendiste sobre la variable port y la función listen? Restaura el puerto a 3000.**
+>
+> Una vez cambiamos los numeros desde el codigo base, cuando tratamos de abrir las paginas pero con el 300 original, nos dice que no se puede acceder a la pagina. En otras palabras hay que tener mucho cuidador para poder abrir la pagina con el numeo correcto
+
+## **ACTIVIDAD 04**
+
+-
