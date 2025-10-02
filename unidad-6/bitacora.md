@@ -24,7 +24,7 @@ npm notice
 >
 > Despues de ejecutar el start nos deja entender que ya el servidor se abrio y que ya podemos hacer uso de el. Nos da una especie de direccion de enlace
 
-
+<a name="evidencia1"></a>
 - **Describe lo que ves inicialmente en page1 y page2 en tu navegador**
 >
 > <img width="1097" height="437" alt="image" src="https://github.com/user-attachments/assets/87ff6cc2-cb5a-45b6-b94e-01aca71d7087" />
@@ -80,7 +80,8 @@ npm notice
 >
 > Es muy diferente hablar del paso de informacion de una microbit que cuenta con una cantidad maxima de interacciones a hablar del cambio de informacion que se necesita de miles de millones de paginas web a tu diminuto dispositivo. La diferencia es demasiado enorme
 
-- Piensa en una página web simple, como un formulario de login
+<a name="evidencia2"></a>
+- **Piensa en una página web simple, como un formulario de login**
 >
 > - ¿Qué parte crees que es HTML (ej. los campos de texto, el botón)?
 >
@@ -94,7 +95,7 @@ npm notice
 >
 > Java script se encarga de darle vida a todo. Se encarga de que los botones te redireccionen a donde deben, que te algan los textos de ingresa aqui tui nombre o que tge saque los avisos en caso de dejar un campo vacio
 
-- Compara el bucle draw() de p5.js con este modelo de “esperar a que algo pase y reaccionar”.
+- **Compara el bucle draw() de p5.js con este modelo de “esperar a que algo pase y reaccionar”**
 >
 > - ¿Qué ventajas crees que tiene el modelo basado en eventos para una interfaz de usuario web?
 >
@@ -104,11 +105,11 @@ npm notice
 > 
 > No, por supuesto que no. Es un sobreesfuerzo estupido el estar recargando una y otra vez cuando los cambios finalmentre se van a dar una vez un usuario presione una tecla o le de click algo
 
-- ¿Por qué crees que podría ser útil usar JavaScript tanto en el cliente (navegador) como en el servidor? ¿Se te ocurre alguna ventaja para los desarrolladores?
+- **¿Por qué crees que podría ser útil usar JavaScript tanto en el cliente (navegador) como en el servidor? ¿Se te ocurre alguna ventaja para los desarrolladores?**
 >
 > Aqui aun no esoy muy segura. Porque supongo que aqui estamos finjiendo demencia de los otros dos lenguajes que son html y css. Pero en realidad el hecho de que tanto el navegador y el servidor esten hablando en un solo idioma constantemente es un poco mas eficaz a mi parecer
 
-- Resume con tus propias palabras la diferencia fundamental entre una comunicación HTTP tradicional y una comunicación usando WebSockets/Socket.IO. ¿En qué tipo de aplicaciones has visto o podrías imaginar que se usa esta comunicación en tiempo real?
+- **Resume con tus propias palabras la diferencia fundamental entre una comunicación HTTP tradicional y una comunicación usando WebSockets/Socket.IO. ¿En qué tipo de aplicaciones has visto o podrías imaginar que se usa esta comunicación en tiempo real?**
 >
 > La comunicacion http consta principalemnte de que tu, como usuario, esperes una respuesta a tu peticion, que, aunque no esta mal, se úede mejorar gracias a WebSockets que te proporciona una libreria llena de opciones que reducen y casi que eliminan ese tiempo de espera. Todo es inmediato, volviendolo mucho mas eficaz
 
@@ -128,6 +129,7 @@ npm notice
 >
 > Cuando cambiamos esas lineas de codigo pasa algo raro pero no se como explicarlo. por decirlo de alguna manera las coordenadas de la pagina1 ya no se actualizan correctamente y puese hacer que la pagina 2 se confunda y cree una bolita en su propia ventana cuando realmente deberia estra dando la ilusion de que esta conectada a las otra
 
+<a name="evidencia3"></a>
 - **Detén el servidor. Cambia const port = 3000; a const port = 3001;. Inicia el servidor. ¿Qué mensaje ves en la consola? ¿En qué puerto dice que está escuchando? Intenta abrir http://localhost:3000/page1. ¿Funciona? Intenta abrir http://localhost:3001/page1. ¿Funciona? ¿Qué aprendiste sobre la variable port y la función listen? Restaura el puerto a 3000.**
 >
 > Una vez cambiamos los numeros desde el codigo base, cuando tratamos de abrir las paginas pero con el 300 original, nos dice que no se puede acceder a la pagina. En otras palabras hay que tener mucho cuidador para poder abrir la pagina con el numeo correcto
@@ -142,6 +144,7 @@ npm notice
 >
 > Al pareceer lo que hicimos fue hacer que la pagina 1 ya no recibiera actualizaciones de la ubicacion de la pagina 2. Por ende la pagina 2 era la unica a la que se le movia la secuencia de imagenes, ya que el si estaba recibiendo actualizaciones del 1. Esto mismo tambien se ve evidenciado en el git, ya que solo aprecen las coordenadas de solo una de las paginas
 
+<a name="evidencia4"></a>
 - **Asegúrate de tener este console.log en page2.js. Abre ambas páginas. Mueve la ventana de page1. Observa la consola del navegador de page2. ¿Qué datos muestra? Mueve la ventana de page2. Observa la consola de page1. ¿Qué pasa? ¿Por qué?**
 >
 > Las consolas del naegador deben de estra mostrando las coordenadas que estan analizando de la ventana contraria, a la que deben seguir 
@@ -150,218 +153,503 @@ npm notice
 >
 > para este experimento decidi comentar todo el if a ver que pasaba. lo primero quennote es que ahora el circulo de la pagina 2, la que modificamos, se encontraba completamente pegad al limite, por lo que no se le veia bien si estaba al menos haciendo el ejercicio de apuntar al opuesto. el efecto en la page 1 fue que ya no podia calcular completamente bien la posicion de su opuesto
 
-- **Cambia el background(220) para que dependa de la distancia entre las ventanas. Puedes calcular la magnitud del resultingVector usando let distancia = resultingVector.mag(); y luego usa map() para convertir esa distancia a un valor de gris o color. background(map(distancia, 0, 1000, 255, 0)); (ajusta el rango 0-1000 según sea necesario).**
->
-> 000
-
 ## **ACTIVIDAD 05**
+- **IDEA**
+>
+> Reconozco que no fui muy creativa aqui. Decidi implementar un degrade automatico entre negro y blanco tomando de referencia las medidas de las ventanas ademas de que dependiendo de la posicion se pudiera variar el color de la bolita entre rojo, verde y azul ( RGB, super creativo)
+>
+> Implementarla fue muy complejo, ya que todo lo que intentaba y modificaba dañaba cosas o acababa dañando el servidor no se por que. Por lo que me abstuve a solo modificar la funcion draw para el fonso, y para la variacion de colores llame a mi relacion toxica porque no sabia que hacer. A la final este implemento algunas operaciones y variables las cuales le permitian establecer rangos de distancias y a cada una se le asiganaba un color. Aunque tuve que pulir algunas cosas porque este señor tambien me dañaba las conecciones del servidor
+>
+> A la final quedo algo asi. La sensibilidad del color rojo y azul no es mucha, pero se nota el cambio al menos
+>
+><a name="evidencia5"></a>
+> <img width="1919" height="728" alt="Captura de pantalla 2025-10-02 155837" src="https://github.com/user-attachments/assets/3f091cda-d5bb-4511-9bb0-33291e7b22e4" />
+> <img width="887" height="775" alt="Captura de pantalla 2025-10-02 155904" src="https://github.com/user-attachments/assets/f7c9afdc-9516-4623-b230-c229d591d295" />
+> <img width="1653" height="734" alt="Captura de pantalla 2025-10-02 155847" src="https://github.com/user-attachments/assets/847056e3-466a-4869-9172-6839ae7ad8f8" />
 
 SERVER.JS
-````
-// server.js
+````javascript
+//SERVER.JS
+
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
 const path = require('path');
-
 const app = express();
-const server = http.createServer(app);
-const io = socketIO(server);
-const port = process.env.PORT || 3000;
+const server = http.createServer(app); 
+const io = socketIO(server); 
+const port = 3000;
 
-let page1 = { x: 0, y: 0, width: 200, height: 200, color: '#ff4444', pulse: 0 };
-let page2 = { x: 0, y: 0, width: 200, height: 200, color: '#44ff44', pulse: 0 };
+let page1 = { x: 0, y: 0, width: 100, height: 100 };
+let page2 = { x: 0, y: 0, width: 100, height: 100 };
+let connectedClients = new Map();
+let syncedClients = new Set();
 
 app.use(express.static(path.join(__dirname, 'views')));
-app.get('/page1', (req, res) => res.sendFile(path.join(__dirname, 'views', 'page1.html')));
-app.get('/page2', (req, res) => res.sendFile(path.join(__dirname, 'views', 'page2.html')));
 
-function isValidWindowData(data) {
-  return data &&
-         typeof data.x === 'number' &&
-         typeof data.y === 'number' &&
-         typeof data.width === 'number' &&
-         typeof data.height === 'number';
-}
-function getRandomColor() {
-  return '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
-}
+app.get('/page1', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'page1.html'));
+});
+
+app.get('/page2', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'page2.html'));
+});
 
 io.on('connection', (socket) => {
-  console.log('Conectado:', socket.id);
+    console.log('A user connected - ID:', socket.id);
+    connectedClients.set(socket.id, { page: null, synced: false });
+    
+    socket.on('disconnect', () => {
+        console.log('User disconnected - ID:', socket.id);
+        connectedClients.delete(socket.id);
+        syncedClients.delete(socket.id);
+        // Notificar a otros clientes que se perdió la sincronización
+        socket.broadcast.emit('peerDisconnected');
+    });
 
-  socket.on('disconnect', () => {
-    console.log('Desconectado:', socket.id);
-    socket.broadcast.emit('peerDisconnected');
-  });
+    socket.on('win1update', (window1, sendid) => {
+        console.log('Received win1update from ID:', socket.id, 'Data:', window1);
+        if (isValidWindowData(window1)) {
+            page1 = window1;
+            connectedClients.set(socket.id, { page: 'page1', synced: false });
+            socket.broadcast.emit('getdata', { data: page1, from: 'page1' });
+            checkAndNotifySyncStatus();
+        }
+    });
 
-  socket.on('win1update', (data) => {
-    if (isValidWindowData(data)) {
-      data.color = getRandomColor();
-      data.pulse = Date.now();
-      page1 = data;
-      io.emit('getdata', { page: 'page1', data: page1 });
-    }
-  });
+    socket.on('win2update', (window2, sendid) => {
+        console.log('Received win2update from ID:', socket.id, 'Data:', window2);
+        if (isValidWindowData(window2)) {
+            page2 = window2;
+            connectedClients.set(socket.id, { page: 'page2', synced: false });
+            socket.broadcast.emit('getdata', { data: page2, from: 'page2' });
+            checkAndNotifySyncStatus();
+        }
+    });
 
-  socket.on('win2update', (data) => {
-    if (isValidWindowData(data)) {
-      data.color = getRandomColor();
-      data.pulse = Date.now();
-      page2 = data;
-      io.emit('getdata', { page: 'page2', data: page2 });
-    }
-  });
+    socket.on('requestSync', () => {
+        const clientInfo = connectedClients.get(socket.id);
+        if (clientInfo?.page === 'page1') {
+            socket.emit('getdata', { data: page2, from: 'page2' });
+        } else if (clientInfo?.page === 'page2') {
+            socket.emit('getdata', { data: page1, from: 'page1' });
+        }
+    });
+
+    socket.on('confirmSync', () => {
+        syncedClients.add(socket.id);
+        const clientInfo = connectedClients.get(socket.id);
+        if (clientInfo) {
+            connectedClients.set(socket.id, { ...clientInfo, synced: true });
+        }
+        checkAndNotifySyncStatus();
+    });    
 });
+
+function isValidWindowData(data) {
+    return data && 
+           typeof data.x === 'number' && 
+           typeof data.y === 'number' && 
+           typeof data.width === 'number' && data.width > 0 &&
+           typeof data.height === 'number' && data.height > 0;
+}
+
+function checkAndNotifySyncStatus() {
+    const page1Clients = Array.from(connectedClients.entries()).filter(([id, info]) => info.page === 'page1');
+    const page2Clients = Array.from(connectedClients.entries()).filter(([id, info]) => info.page === 'page2');
+    
+    const bothPagesConnected = page1Clients.length > 0 && page2Clients.length > 0;
+    const allClientsSynced = Array.from(connectedClients.keys()).every(id => syncedClients.has(id));
+    const hasMinimumClients = connectedClients.size >= 2;
+
+    console.log(`Debug - Connected clients: ${connectedClients.size}, Page1: ${page1Clients.length}, Page2: ${page2Clients.length}, Synced: ${syncedClients.size}`);
+
+    
+    if (bothPagesConnected && allClientsSynced && hasMinimumClients) {
+        io.emit('fullySynced', true);
+        console.log('All clients are fully synced');
+    } else {
+        io.emit('fullySynced', false);
+        console.log(`Sync status: pages=${bothPagesConnected}, synced=${allClientsSynced}, clients=${connectedClients.size}`);
+    }
+}
 
 server.listen(port, () => {
-  console.log(`Servidor en http://localhost:${port}`);
+    console.log(`Server is listening on http://localhost:${port}`);
 });
+
+
 ````
 
 PAGE1.JS
-````
-// page1.js
-let myData = { x: window.screenX, y: window.screenY, width: window.innerWidth, height: window.innerHeight, color: '#ff4444', pulse: Date.now() };
-let otherData = { x: 0, y: 0, width: 200, height: 200, color: '#44ff44', pulse: 0 };
+````javascript
+let currentPageData = {
+    x: window.screenX,
+    y: window.screenY,
+    width: window.innerWidth,
+    height: window.innerHeight
+}
 
+let previousPageData = {
+    x: window.screenX,
+    y: window.screenY,
+    width: window.innerWidth,
+    height: window.innerHeight
+};
+
+let remotePageData = { x: 0, y: 0, width: 100, height: 100 };
+let point1 = [currentPageData.width / 2, currentPageData.height / 2];
 let socket;
-let pulses = [];
+let isConnected = false;
+let hasRemoteData = false;
+let isFullySynced = false;
+let connectionTimeout;
+
+const BG_MAP_MAX_DIST = 1000;
+const BG_GRAY_VALUE = 50;
+const BG_GRAY_TOLERANCE = 10;
+const BG_WHITE_THRESHOLD = 230;
+const BG_BLACK_THRESHOLD = 25;
+
+function computeBgOpacity_page1() {
+    let distancia = dist(currentPageData.x, currentPageData.y, remotePageData.x, remotePageData.y);
+    return map(distancia, 0, BG_MAP_MAX_DIST, 255, 0);
+}
+
+function getBallColorFromBg_page1(bg) {
+    if (bg <= BG_BLACK_THRESHOLD) return color(0, 255, 0);
+    if (abs(bg - BG_GRAY_VALUE) <= BG_GRAY_TOLERANCE) return color(255, 0, 0);
+    if (bg >= BG_WHITE_THRESHOLD) return color(0, 0, 255);
+    return color(0, 255, 0);
+}
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  socket = io();
+    createCanvas(windowWidth, windowHeight);
+    frameRate(60);
+    socket = io();
 
-  socket.on('connect', () => {
-    socket.emit('win1update', myData);
-  });
+    socket.on('connect', () => {
+        console.log('Connected with ID:', socket.id);
+        isConnected = true;
+        socket.emit('win1update', currentPageData, socket.id);
+        
+        setTimeout(() => {
+            socket.emit('requestSync');
+        }, 500);
+    });
 
-  socket.on('getdata', (res) => {
-    if (res.page === 'page2') {
-      otherData = res.data;
-      pulses.push({ x: otherData.x+otherData.width/2, y: otherData.y+otherData.height/2, start: millis(), color: otherData.color });
-    }
-  });
+    socket.on('getdata', (response) => {
+        if (response && response.data && isValidRemoteData(response.data)) {
+            remotePageData = response.data;
+            hasRemoteData = true;
+            console.log('Received valid remote data:', remotePageData);
+            socket.emit('confirmSync');
+        }
+    });
+
+    socket.on('fullySynced', (synced) => {
+        isFullySynced = synced;
+        console.log('Sync status:', synced ? 'SYNCED' : 'NOT SYNCED');
+    });
+
+    socket.on('peerDisconnected', () => {
+        hasRemoteData = false;
+        isFullySynced = false;
+        console.log('Peer disconnected, waiting for reconnection...');
+    });
+
+    socket.on('disconnect', () => {
+        isConnected = false;
+        hasRemoteData = false;
+        isFullySynced = false;
+        console.log('Disconnected from server');
+    });
 }
+
+function isValidRemoteData(data) {
+    return data && 
+           typeof data.x === 'number' && 
+           typeof data.y === 'number' && 
+           typeof data.width === 'number' && data.width > 0 &&
+           typeof data.height === 'number' && data.height > 0;
+}
+
+function checkWindowPosition() {
+    currentPageData = {
+        x: window.screenX,
+        y: window.screenY,
+        width: window.innerWidth,
+        height: window.innerHeight
+    };
+
+    if (currentPageData.x !== previousPageData.x || currentPageData.y !== previousPageData.y || 
+        currentPageData.width !== previousPageData.width || currentPageData.height !== previousPageData.height) {
+
+        point1 = [currentPageData.width / 2, currentPageData.height / 2]
+        socket.emit('win1update', currentPageData, socket.id);
+        previousPageData = currentPageData;
+    }
+}
+
 
 function draw() {
-  background(30);
+    let bg = computeBgOpacity_page1();
+    background(bg);
 
-  // bolita propia
-  fill(myData.color);
-  ellipse(myData.x + myData.width/2, myData.y + myData.height/2, 100, 100);
+    if (!isConnected) {
+        showStatus('Conectando al servidor...', color(255, 165, 0));
+        return;
+    }
+    
+    if (!hasRemoteData) {
+        showStatus('Esperando conexión de la otra ventana...', color(255, 165, 0));
+        return;
+    }
+    
+    if (!isFullySynced) {
+        showStatus('Sincronizando datos...', color(255, 165, 0));
+        return;
+    }
 
-  // bolita de la otra ventana
-  fill(otherData.color);
-  ellipse(otherData.x + otherData.width/2, otherData.y + otherData.height/2, 100, 100);
+    let bolaColor = getBallColorFromBg_page1(bg);
 
-  // línea entre ambas
-  stroke(255);
-  line(myData.x + myData.width/2, myData.y + myData.height/2,
-       otherData.x + otherData.width/2, otherData.y + otherData.height/2);
+    // bolita local
+    noStroke();
+    fill(bolaColor);
+    drawCircle(point1[0], point1[1]);
 
-  drawPulses();
-  checkWindowChange();
+    checkWindowPosition();
+    
+    let vector1 = createVector(currentPageData.x, currentPageData.y);
+    let vector2 = createVector(remotePageData.x, remotePageData.y);
+    let resultingVector = createVector(vector2.x - vector1.x, vector2.y - vector1.y);
+
+    stroke(50);
+    strokeWeight(20);
+    fill(bolaColor);
+    drawCircle(resultingVector.x + remotePageData.width / 2, resultingVector.y + remotePageData.height / 2);
+    line(point1[0], point1[1], resultingVector.x + remotePageData.width / 2, resultingVector.y + remotePageData.height / 2);
 }
 
-function checkWindowChange() {
-  let newData = { x: window.screenX, y: window.screenY, width: window.innerWidth, height: window.innerHeight };
-  if (newData.x !== myData.x || newData.y !== myData.y || newData.width !== myData.width || newData.height !== myData.height) {
-    myData = { ...newData, color: getRandomColor(), pulse: Date.now() };
-    socket.emit('win1update', myData);
-    pulses.push({ x: myData.x+myData.width/2, y: myData.y+myData.height/2, start: millis(), color: myData.color });
-  }
+function showStatus(message, statusColor) {
+    textSize(24);
+    textAlign(CENTER, CENTER);
+    noStroke();
+    fill(0, 0, 0, 150);
+    rectMode(CENTER);
+    let textW = textWidth(message) + 40;
+    let textH = 40;
+    rect(width / 2, 1*height / 6, textW, textH, 10);
+    fill(statusColor);
+    text(message, width / 2, 1*height / 6);
 }
 
-function drawPulses() {
-  for (let i = pulses.length-1; i>=0; i--) {
-    let p = pulses[i];
-    let age = millis()-p.start;
-    if (age > 1000) { pulses.splice(i,1); continue; }
-    let r = map(age,0,1000,0,200);
-    let alpha = map(age,0,1000,150,0);
-    push();
-    let c = color(p.color);
-    stroke(red(c), green(c), blue(c), alpha);
-    noFill();
-    ellipse(p.x, p.y, r, r);
-    pop();
-  }
+function drawCircle(x, y) {
+    ellipse(x, y, 150, 150);
 }
 
-function windowResized(){ resizeCanvas(windowWidth, windowHeight); }
-function getRandomColor(){ return '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0'); }
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
+
 ````
 
 PAGE2.JS
-````
-// page2.js
-let myData = { x: window.screenX, y: window.screenY, width: window.innerWidth, height: window.innerHeight, color: '#44ff44', pulse: Date.now() };
-let otherData = { x: 0, y: 0, width: 200, height: 200, color: '#ff4444', pulse: 0 };
+````javascript
+let currentPageData = {
+    x: window.screenX,
+    y: window.screenY,
+    width: window.innerWidth,
+    height: window.innerHeight
+}
 
+let previousPageData = {
+    x: window.screenX,
+    y: window.screenY,
+    width: window.innerWidth,
+    height: window.innerHeight
+};
+
+let remotePageData = { x: 0, y: 0, width: 100, height: 100 };
+let point2 = [currentPageData.width / 2, currentPageData.height / 2];
 let socket;
-let pulses = [];
+let isConnected = false;
+let hasRemoteData = false;
+let isFullySynced = false;
+let connectionTimeout;
+
+const BG_MAP_MAX_DIST_2 = 1000;
+const BG_GRAY_VALUE_2 = 50;
+const BG_GRAY_TOLERANCE_2 = 10;
+const BG_WHITE_THRESHOLD_2 = 230;
+const BG_BLACK_THRESHOLD_2 = 25;
+
+function computeBgOpacity_page2() {
+    let distancia = dist(currentPageData.x, currentPageData.y, remotePageData.x, remotePageData.y);
+    return map(distancia, 0, BG_MAP_MAX_DIST_2, 255, 0);
+}
+
+function getBallColorFromBg_page2(bg) {
+    if (bg <= BG_BLACK_THRESHOLD_2) return color(0, 255, 0);
+    if (abs(bg - BG_GRAY_VALUE_2) <= BG_GRAY_TOLERANCE_2) return color(255, 0, 0);
+    if (bg >= BG_WHITE_THRESHOLD_2) return color(0, 0, 255);
+    return color(0, 255, 0);
+}
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  socket = io();
+    createCanvas(windowWidth, windowHeight);
+    frameRate(60);
+    socket = io();
 
-  socket.on('connect', () => {
-    socket.emit('win2update', myData);
-  });
+    socket.on('connect', () => {
+        console.log('Connected with ID:', socket.id);
+        isConnected = true;
+        socket.emit('win2update', currentPageData, socket.id);
+        
+        setTimeout(() => {
+            socket.emit('requestSync');
+        }, 500);
+    });
 
-  socket.on('getdata', (res) => {
-    if (res.page === 'page1') {
-      otherData = res.data;
-      pulses.push({ x: otherData.x+otherData.width/2, y: otherData.y+otherData.height/2, start: millis(), color: otherData.color });
-    }
-  });
+    socket.on('getdata', (response) => {
+        if (response && response.data && isValidRemoteData(response.data)) {
+            remotePageData = response.data;
+            hasRemoteData = true;
+            console.log('Received valid remote data:', remotePageData);
+            socket.emit('confirmSync');
+        }
+    });
+
+    socket.on('fullySynced', (synced) => {
+        isFullySynced = synced;
+        console.log('Sync status:', synced ? 'SYNCED' : 'NOT SYNCED');
+    });
+
+    socket.on('peerDisconnected', () => {
+        hasRemoteData = false;
+        isFullySynced = false;
+        console.log('Peer disconnected, waiting for reconnection...');
+    });
+
+    socket.on('disconnect', () => {
+        isConnected = false;
+        hasRemoteData = false;
+        isFullySynced = false;
+        console.log('Disconnected from server');
+    });
 }
+
+function isValidRemoteData(data) {
+    return data && 
+           typeof data.x === 'number' && 
+           typeof data.y === 'number' && 
+           typeof data.width === 'number' && data.width > 0 &&
+           typeof data.height === 'number' && data.height > 0;
+}
+
+function checkWindowPosition() {
+    currentPageData = {
+        x: window.screenX,
+        y: window.screenY,
+        width: window.innerWidth,
+        height: window.innerHeight
+    };
+
+    if (currentPageData.x !== previousPageData.x || currentPageData.y !== previousPageData.y || 
+        currentPageData.width !== previousPageData.width || currentPageData.height !== previousPageData.height) {
+
+        point2 = [currentPageData.width / 2, currentPageData.height / 2]
+        socket.emit('win2update', currentPageData, socket.id);
+        previousPageData = currentPageData; 
+    }
+}
+
 
 function draw() {
-  background(30);
+    let bg = computeBgOpacity_page2();
+    background(bg);
+    
+    if (!isConnected) {
+        showStatus('Conectando al servidor...', color(255, 165, 0));
+        return;
+    }
+    
+    if (!hasRemoteData) {
+        showStatus('Esperando conexión de la otra ventana...', color(255, 165, 0));
+        return;
+    }
+    
+    if (!isFullySynced) {
+        showStatus('Sincronizando datos...', color(255, 165, 0));
+        return;
+    }
 
-  fill(myData.color);
-  ellipse(myData.x + myData.width/2, myData.y + myData.height/2, 100, 100);
+    let bolaColor = getBallColorFromBg_page2(bg);
 
-  fill(otherData.color);
-  ellipse(otherData.x + otherData.width/2, otherData.y + otherData.height/2, 100, 100);
+    // bolita local
+    noStroke();
+    fill(bolaColor);
+    drawCircle(point2[0], point2[1]);
 
-  stroke(255);
-  line(myData.x + myData.width/2, myData.y + myData.height/2,
-       otherData.x + otherData.width/2, otherData.y + otherData.height/2);
-
-  drawPulses();
-  checkWindowChange();
+    checkWindowPosition();
+    
+    let vector2 = createVector(remotePageData.x, remotePageData.y);
+    let vector1 = createVector(currentPageData.x, currentPageData.y);
+    let resultingVector = createVector(vector2.x - vector1.x, vector2.y - vector1.y);
+    
+    stroke(50);
+    strokeWeight(20);
+    fill(bolaColor);
+    drawCircle(resultingVector.x + remotePageData.width / 2, resultingVector.y + remotePageData.height / 2);
+    line(point2[0], point2[1], resultingVector.x + remotePageData.width / 2, resultingVector.y + remotePageData.height / 2);
 }
 
-function checkWindowChange() {
-  let newData = { x: window.screenX, y: window.screenY, width: window.innerWidth, height: window.innerHeight };
-  if (newData.x !== myData.x || newData.y !== myData.y || newData.width !== myData.width || newData.height !== myData.height) {
-    myData = { ...newData, color: getRandomColor(), pulse: Date.now() };
-    socket.emit('win2update', myData);
-    pulses.push({ x: myData.x+myData.width/2, y: myData.y+myData.height/2, start: millis(), color: myData.color });
-  }
+function showStatus(message, statusColor) {
+    textSize(24);
+    textAlign(CENTER, CENTER);
+    noStroke();
+    fill(0, 0, 0, 150);
+    rectMode(CENTER);
+    let textW = textWidth(message) + 40;
+    let textH = 40;
+    rect(width / 2, 1*height / 6, textW, textH, 10);
+    fill(statusColor);
+    text(message, width / 2, 1*height / 6);
 }
 
-function drawPulses() {
-  for (let i = pulses.length-1; i>=0; i--) {
-    let p = pulses[i];
-    let age = millis()-p.start;
-    if (age > 1000) { pulses.splice(i,1); continue; }
-    let r = map(age,0,1000,0,200);
-    let alpha = map(age,0,1000,150,0);
-    push();
-    let c = color(p.color);
-    stroke(red(c), green(c), blue(c), alpha);
-    noFill();
-    ellipse(p.x, p.y, r, r);
-    pop();
-  }
+function drawCircle(x, y) {
+    ellipse(x, y, 150, 150);
 }
 
-function windowResized(){ resizeCanvas(windowWidth, windowHeight); }
-function getRandomColor(){ return '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0'); }
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
 ````
+
+##  **AUTOEVALUACIÓN** 
+
+- **Mi nota propuesta:** 5
+- **Justificación:**
+>
+> El estudiante consigue crear el servidor local dentro de su dispositivo y entender el funcionamiento básico con respecto a la actualización de datos
+>
+> [evidencia actividad 1](#evidencia1)
+>
+> El estudiante consigue comprender la analogia del internet como una inmensa carretera y nuestro navegador como nuestro vehiculo en este, ademas de la estructura basica de las paginas de html, css y javascript, asi como tambien la utilidad de las bibliotecs como puente principal para la creacion de servidores con respuesta inmediata
+>
+> [evidencia actividad 2](#evidencia2)
+>
+> El estudiante comprende el funcionamiento de la actualizacion de datos mediante el cambio deliverado de ciertos valores que ocasionan fallas en el servidor y como evitarlas
+>
+> [evidencia actividad 3](#evidencia3)
+>
+> El estudiante compara entre las consolas que proporciona el explorador web y la ventana de git y el como los datos se actualizan entre ambas para que puedan estra entrelazadas
+>
+> [evidencia actividad 4](#evidencia4)
+>
+> El estudiante consigue modificar el codigo base para hacer añadidos interactivos a la aplicacion
+>
+> [evidencia actividad 5](#evidencia5)
+
 
 
