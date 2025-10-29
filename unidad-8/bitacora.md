@@ -384,5 +384,7 @@ El estudiante diseña nuevas funcionalidades en su actividad interactiva para in
 [evidencia actividad 1](#evidencia1)
 
 - ACTIVIDAD 2
+
 El estudiante adapta el codigo de la actividad interactiva anterior para incluir el uso del microbit
 [evidencia actividad 2](#evidencia2)
+
